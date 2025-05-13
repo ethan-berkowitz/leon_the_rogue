@@ -18,12 +18,10 @@ function movement_and_collision()
 	var new_y = y + move_y * spd;
 
 	// Horizontal collision
-	if (!place_meeting(new_x, y, oCollision)) {
+	if (!place_meeting(new_x, y, oCollision) and !place_meeting(new_x, y, oDoor))
 	    x = new_x;
-	}
 
 	// Vertical collision
-	if (!place_meeting(x, new_y, oCollision)) {
+	if (!place_meeting(x, new_y, oCollision) and !place_meeting(new_x, y, oDoor))
 	    y = new_y;
-	}
 }
