@@ -1,0 +1,12 @@
+room_inst = other;
+
+
+
+
+
+
+
+
+
+
+
