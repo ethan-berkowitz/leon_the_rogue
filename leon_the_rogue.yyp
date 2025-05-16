@@ -27,7 +27,10 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
   ],
-  "IncludedFiles": [],
+  "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"openai_api_key.txt","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"trader_1_sys_prompt.txt","CopyToMask":-1,"filePath":"datafiles",},
+  ],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
@@ -68,6 +71,7 @@
     {"id":{"name":"player_has_item","path":"scripts/player_has_item/player_has_item.yy",},},
     {"id":{"name":"sEnemyDeath","path":"sprites/sEnemyDeath/sEnemyDeath.yy",},},
     {"id":{"name":"sRoom","path":"sprites/sRoom/sRoom.yy",},},
+    {"id":{"name":"llm_testing","path":"scripts/llm_testing/llm_testing.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"Main","path":"rooms/Main/Main.yy",},},
   ],

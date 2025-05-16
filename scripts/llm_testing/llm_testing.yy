@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "check_for_end_input_text",
+  "name": "llm_testing",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

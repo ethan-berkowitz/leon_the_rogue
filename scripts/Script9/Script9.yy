@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "check_for_end_input_text",
+  "name": "Script9",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "leon_the_rogue",
+    "path": "leon_the_rogue.yyp",
   },
 }

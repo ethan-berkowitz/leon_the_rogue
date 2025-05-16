@@ -7,6 +7,7 @@ function draw_riddler_text()
 
 	draw_sprite(sNPCTextBox, 0, xx, yy);
 
-	draw_text_ext(xx + 10, yy + 10, output_text, 20, 460);
+	//draw_text_ext(xx + 10, yy + 10, output_text, 20, 460);
+	draw_text_ext(xx + 10, yy + 10, llm_reply, 20, 460);
 	draw_text_ext(xx + 15, yy + 286, input_text, 20, 460);
 }

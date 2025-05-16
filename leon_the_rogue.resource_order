@@ -48,5 +48,6 @@
     {"name":"player_has_item","order":5,"path":"scripts/player_has_item/player_has_item.yy",},
     {"name":"sEnemyDeath","order":11,"path":"sprites/sEnemyDeath/sEnemyDeath.yy",},
     {"name":"sRoom","order":8,"path":"sprites/sRoom/sRoom.yy",},
+    {"name":"llm_testing","order":9,"path":"scripts/llm_testing/llm_testing.yy",},
   ],
 }
