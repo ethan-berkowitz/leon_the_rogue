@@ -24,28 +24,63 @@ if ds_map_find_value(async_load, "id") == request_id {
 			
 				var _out1 = ds_map_find_value(_map, "output");
 				
-				var _out2 = ds_map_find_value(_out1, "content");
+				if (ds_map_exists(_out1 [| 0], "type")) {
+					show_debug_message("OUTPUT TYPE IS: " + ds_map_find_value(_out1[| 0], "type"));
+					if (ds_map_find_value(_out1[| 0], "type") == "function_call") {
+						var _func_call = _out1[| 0];
+						show_debug_message("CALLING FUNCTION: " + ds_map_find_value(_func_call, "name"))
+						if (ds_map_find_value(_func_call, "name") == "sell_item") {
+							show_debug_message("ARGS: " + ds_map_find_value(_func_call, "arguments"));
+							
+							var _func_input_struct = new MakeToolCallInput(_func_call);
+							variable_struct_set(_func_input_struct, "id", _func_call[? "id"]);
+							array_push(whole_prompt [$ "input"], _func_input_struct);
+							var _sell_result = sell_item(ds_map_find_value(_func_call, "arguments"));
+							var _func_output_struct = new MakeToolCallOutput(_func_call);
+							show_debug_message("SELL RESULT: " + _sell_result);
+							_func_output_struct.output = _sell_result;
+							array_push(whole_prompt [$ "input"], _func_output_struct);
+							for (i = 0; i < array_length(whole_prompt.input); i++) {
+								show_debug_message("INPUT NUMBER: " + string(i) + json_stringify(whole_prompt.input[i]));
+							}
+							if (json_decode(_sell_result)[? "success"] == "false") {
+								show_debug_message("ASYNC NO MONEY");
+								array_push(whole_prompt.input, new MakeInput("user", new MakeContent("input_text", "I dont have enough gold")));
+								llm_reply = "You do not have enough gold for that";
+							} else {
+								llm_reply = "Thank you for the purchase!";
+							}
+							ds_map_destroy(_map);
+							//ds_map_destroy(_out1);
+							ds_map_destroy(_func_call);
+							
+							//make_request();							
+						}
+					} else { // not a func call
+						var _out2 = ds_map_find_value(_out1[| 0], "content");
 								
-				var _out3 = ds_map_find_value(_out2, "text");
+						var _out3 = ds_map_find_value(_out2, "text");
 				
-				show_debug_message("OUTPUT: " + _out3);
-				llm_reply = _out3;
+						show_debug_message("OUTPUT: " + _out3);
+						llm_reply = _out3;
+						llm_reply = string_replace(llm_reply, chr(8212), "--");
+						
+						
+						array_push(whole_prompt [$ "input"], new MakeInput("assistant", new MakeContent("output_text", llm_reply)));
 				
-				//array_push(whole_prompt.input, {
-				//	role: "assistant",
-				//	content: [{
-				//		type: "output_text",
-				//		text: llm_reply
-				//	}]
-				//});
-				array_push(whole_prompt [$ "input"], new MakeInput("assistant", new MakeContent("output_text", llm_reply)));
+						show_debug_message("NEW WHOLE PROMPT: " + json_stringify(whole_prompt));
+						ds_map_destroy(_out2);
+					}
+					//if (array_length(whole_prompt.input) >= 7) {
+					//	show_debug_message("HAS INPUT [6]: " + json_encode(whole_prompt.input[6]));	
+					//}
+				}
 				
-				show_debug_message("NEW WHOLE PROMPT: " + json_stringify(whole_prompt));
 				request_id = -1;
 				
 				ds_map_destroy(_map);
-				ds_map_destroy(_out1);
-				ds_map_destroy(_out2);
+				//ds_map_destroy(_out1);
+
 				
 				break;
 			

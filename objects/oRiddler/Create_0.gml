@@ -1,36 +1,18 @@
 input_text = "";
-output_text = "Can you solve this riddle? Say YES.";
+output_text = "I am merchant. What do you want?";
 input_history = [];
 max_length = 50;
 key_given = false;
-// variables created here will be in the scope of Riddler...
 llm_reply = "";
 sys_prompt_trader_1 = "";
 apikey = "";
-show_debug_message("CREATE RIDDLER");
-
-//s_content = { type: "", text: ""};
-
-//content = [];
-
-//input = [];
+show_debug_message("CREATE MERCHANT");
 
 whole_prompt = {
-	model : "gpt-4.1-nano",
-	//input: input
-	input: []
-	//new MakeInput("system", new MakeContent("input_text", ""))
-	//input: [
-	//	{
-	//		role: "",
-	//		content: [{
-	//			type: "",
-	//			text: ""
-	//			}]
-	//	}]
+    model : "gpt-4.1-nano",
+    input: [],
+    tools: []
 };
-
-//array_push(whole_prompt [$ "input"], {role:"asd", content: "asd"});
 
 request_id = -1;
 init_llm();

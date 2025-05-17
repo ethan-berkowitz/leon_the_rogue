@@ -4,11 +4,13 @@ ds_list_add(oPlayer.inventory, "Sword");
 text_mode = false;
 room_inst = noone;
 last_wasd_key = "D";
-gold = 0;
-hp = 5;
+gold = 500;
+hp = 10;
 flash_for_taking_damage = false;
 flash_timer = 0;
 flash_length = 5;
+boss_damage_cooldown = 50;
+boss_damage_cooldown_counter = 20;
 
 key_time = {
     left: -1,

@@ -1,3 +1,5 @@
+type = "sword";
+
 swing_spd = 8;
 
 angle = 45;

@@ -1,3 +1,18 @@
+//if (mouse_check_button_pressed(mb_left))
+//	give_player_item("long_sword");
+
+if (hp <= 0 and keyboard_check_pressed(ord("R")))
+	game_restart();
+	
+if (keyboard_check_pressed(ord("T")))
+	instance_create_layer(x + 20, y, "NPC", oMerchant);
+	
+
+
+
+boss_damage_cooldown_counter++;	
+
+
 if (mouse_check_button_pressed(mb_right))
 	game_restart();
 if (keyboard_check_pressed(vk_escape))
