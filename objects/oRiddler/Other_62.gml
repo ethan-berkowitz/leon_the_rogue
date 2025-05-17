@@ -17,22 +17,35 @@ if ds_map_find_value(async_load, "id") == request_id {
 				
 				// json_decode() creates nested DSMaps
 				var _result = ds_map_find_value(async_load, "result");
-				var _map = json_decode(_result);
 				
-								
-								
+				show_debug_message("RECEIVED: " + _result);
+				
+				var _map = json_decode(_result);
+			
 				var _out1 = ds_map_find_value(_map, "output");
 				
 				var _out2 = ds_map_find_value(_out1, "content");
-				
+								
 				var _out3 = ds_map_find_value(_out2, "text");
 				
 				show_debug_message("OUTPUT: " + _out3);
 				llm_reply = _out3;
 				
+				//array_push(whole_prompt.input, {
+				//	role: "assistant",
+				//	content: [{
+				//		type: "output_text",
+				//		text: llm_reply
+				//	}]
+				//});
+				array_push(whole_prompt [$ "input"], new MakeInput("assistant", new MakeContent("output_text", llm_reply)));
+				
+				show_debug_message("NEW WHOLE PROMPT: " + json_stringify(whole_prompt));
 				request_id = -1;
 				
-				//llm_reply = json_encode(_map);
+				ds_map_destroy(_map);
+				ds_map_destroy(_out1);
+				ds_map_destroy(_out2);
 				
 				break;
 			

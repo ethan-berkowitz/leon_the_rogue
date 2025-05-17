@@ -7,7 +7,8 @@ function MakeContent(_type, _text) constructor
 function MakeInput(_role, _content) constructor
 {
     role = _role;
-    type = _content;
+    content = [];
+	array_push(content, _content);
 }
 
 function make_request(){
@@ -22,6 +23,7 @@ function make_request(){
 	var headers = ds_map_create();
 	ds_map_add(headers, "Content-Type", "application/json");
 	ds_map_add(headers, "Authorization", "Bearer " + apikey);
+	show_debug_message("GARBAGE: " + json_encode(headers));
 	request_id = http_request(url, "POST", headers, req_body);
 	show_debug_message("Request ID: " + string(request_id));
 	ds_map_destroy(headers);
@@ -55,12 +57,12 @@ function got_player_msg(){
 		{
 			role: "user",
 			content: content
-		},
-		
+		},		
 	]
 	
-	whole_prompt.model = "gpt-4.1-nano";
-	whole_prompt.input = input;
+	//whole_prompt.model = "gpt-4.1-nano";
+	array_push(whole_prompt [$ "input"], new MakeInput("user", new MakeContent("input_text", input_text)));
+	//whole_prompt.input = input;
 	make_request();	
 }
 
@@ -93,7 +95,8 @@ function init_llm() {
 		},
 	]
 		
-	whole_prompt.model = "gpt-4.1-nano";
-	whole_prompt.input = input;
+	//whole_prompt.model = "gpt-4.1-nano";
+	array_push(whole_prompt [$ "input"], new MakeInput("system", new MakeContent("input_text", sys_prompt_trader_1)));
+	//whole_prompt.input = input;
 	make_request();
 }

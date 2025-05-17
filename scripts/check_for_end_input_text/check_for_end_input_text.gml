@@ -6,13 +6,6 @@ function check_for_end_input_text()
 	{
 		got_player_msg();
 		array_push(input_history, input_text);
-		if (input_text == "YES")
-		{
-			output_text = "Good job. Here's a key. Bye! Press 'esc' to exit.";
-			give_player_key();
-		}
-		//else
-		//	output_text = "That's not the answer. Just type YES.";
-		//input_text = "";
+		input_text = "";
 	}
 }
