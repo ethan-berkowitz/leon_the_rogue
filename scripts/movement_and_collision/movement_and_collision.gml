@@ -1,27 +1,51 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
 function movement_and_collision()
 {
-	var move_x = keyboard_check(ord("D")) - keyboard_check(ord("A"));
-	var move_y = keyboard_check(ord("S")) - keyboard_check(ord("W"));
+	
+	if (keyboard_check_pressed(ord("A"))) key_time.left = current_time;
+	if (keyboard_check_pressed(ord("D"))) key_time.right = current_time;
+	if (keyboard_check_pressed(ord("W"))) key_time.up = current_time;
+	if (keyboard_check_pressed(ord("S"))) key_time.down = current_time;
 
-	// Normalize diagonal movement
-	if (move_x || move_y)
+	if (keyboard_check_released(ord("A"))) key_time.left = -1;
+	if (keyboard_check_released(ord("D"))) key_time.right = -1;
+	if (keyboard_check_released(ord("W"))) key_time.up = -1;
+	if (keyboard_check_released(ord("S"))) key_time.down = -1;
+	
+	var move_x = 0;
+	var move_y = 0;
+
+	// Horizontal movement
+	if (keyboard_check(ord("A")) && !keyboard_check(ord("D")))
+	    move_x = -1;
+	else if (!keyboard_check(ord("A")) && keyboard_check(ord("D")))
+	    move_x = 1;
+	else if (keyboard_check(ord("A")) && keyboard_check(ord("D")))
+	    move_x = (key_time.left < key_time.right) ? -1 : 1;
+
+	// Vertical movement
+	if (keyboard_check(ord("W")) && !keyboard_check(ord("S")))
+	    move_y = -1;
+	else if (!keyboard_check(ord("W")) && keyboard_check(ord("S")))
+	    move_y = 1;
+	else if (keyboard_check(ord("W")) && keyboard_check(ord("S")))
+	    move_y = (key_time.up < key_time.down) ? -1 : 1;
+
+	// Normalize
+	if (move_x != 0 || move_y != 0)
 	{
 	    var len = point_distance(0, 0, move_x, move_y);
 	    move_x /= len;
 	    move_y /= len;
 	}
 
-	// Apply movement with collision check
+	// Collision movement
 	var new_x = x + move_x * spd;
 	var new_y = y + move_y * spd;
 
-	// Horizontal collision
-	if (!place_meeting(new_x, y, oCollision) and !place_meeting(new_x, y, oDoor))
+	if (!place_meeting(new_x, y, oCollision) && !place_meeting(new_x, y, oDoor))
 	    x = new_x;
 
-	// Vertical collision
-	if (!place_meeting(x, new_y, oCollision) and !place_meeting(new_x, y, oDoor))
+	if (!place_meeting(x, new_y, oCollision) && !place_meeting(x, new_y, oDoor))
 	    y = new_y;
 }

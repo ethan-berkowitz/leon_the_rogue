@@ -78,6 +78,7 @@ function init_llm() {
 	// read api key from file
 	file_id_apikey = file_text_open_read("openai_api_key.txt");
 	apikey = file_text_readln(file_id_apikey);
+	
 	file_find_close();
 	
 	// the initial request
