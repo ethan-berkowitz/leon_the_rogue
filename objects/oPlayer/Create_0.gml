@@ -1,10 +1,11 @@
 spd = 2.5;
 inventory = ds_list_create();
 ds_list_add(oPlayer.inventory, "Sword");
-text_mode = false;
+text_mode_riddler = false;
+text_mode_merchant = false;
 room_inst = noone;
 last_wasd_key = "D";
-gold = 500;
+gold = 0;
 hp = 10;
 flash_for_taking_damage = false;
 flash_timer = 0;

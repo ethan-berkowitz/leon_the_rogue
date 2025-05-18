@@ -8,9 +8,9 @@ if (dist < 64 and key_given == false)
 	draw_text(x - 6, y - 40, "E");
 	
 	if (keyboard_check_pressed(ord("E")))
-		oPlayer.text_mode = true;
+		oPlayer.text_mode_merchant = true;
 
 
 }
-if (oPlayer.text_mode = true)
-	draw_npc_text();
+if (oPlayer.text_mode_merchant = true)
+	draw_merchant_text();

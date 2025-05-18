@@ -1,4 +1,23 @@
 
+function MakeToolGiveKey() constructor
+{
+    //arr = [ "item_id", "quantity","price"];
+    
+    type = "function";
+    name = "give_key";
+    description = "give the player a key";
+    strict = true;
+    parameters = {
+		type: "object",
+		properties: {},
+    additionalProperties: false
+  }
+}
+
+function give_key() {
+    give_player_item("boss_key");
+}
+
 function MakeContent(_type, _text) constructor
 {
     type = _type;
@@ -107,10 +126,12 @@ function got_player_msg(){
 	make_request();	
 }
 
-function init_llm() {
+function init_llm(npc) {
 	// read prompt from file
-
-	file_id = file_text_open_read("trader_1_sys_prompt.txt");
+	if (npc == "merchant")
+		file_id = file_text_open_read("trader_1_sys_prompt.txt");
+	else
+		file_id = file_text_open_read("riddler_1_sys_prompt.txt");
 	sys_prompt_trader_1 = "";
 	while (!file_text_eof(file_id)) {
 	        sys_prompt_trader_1 += file_text_readln(file_id);
@@ -138,7 +159,10 @@ function init_llm() {
 	]
 		
 	array_push(whole_prompt [$ "input"], new MakeInput("system", new MakeContent("input_text", sys_prompt_trader_1)));
-	array_push(whole_prompt [$ "tools"], new MakeTool());
+	if (npc == "merchant")
+		array_push(whole_prompt [$ "tools"], new MakeTool());
+	else
+		array_push(whole_prompt [$ "tools"], new MakeToolGiveKey());
 	
 	make_request();
 }

@@ -4,7 +4,7 @@ sword_timer++;
 
 if (hp <= 0)
 {
-	ds_list_add(oPlayer.inventory, "Key");
+	ds_list_add(oPlayer.inventory, "final_key");
 	instance_destroy();
 }
 

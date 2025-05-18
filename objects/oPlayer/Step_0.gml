@@ -4,8 +4,8 @@
 if (hp <= 0 and keyboard_check_pressed(ord("R")))
 	game_restart();
 	
-if (keyboard_check_pressed(ord("T")))
-	instance_create_layer(x + 20, y, "NPC", oMerchant);
+//if (keyboard_check_pressed(ord("T")))
+//	instance_create_layer(x + 20, y, "NPC", oMerchant);
 	
 
 
@@ -16,8 +16,11 @@ boss_damage_cooldown_counter++;
 if (mouse_check_button_pressed(mb_right))
 	game_restart();
 if (keyboard_check_pressed(vk_escape))
-    text_mode = false;
-if (text_mode == true)
+{
+    text_mode_riddler = false;
+	text_mode_merchant = false;
+}
+if (text_mode_merchant == true or text_mode_riddler == true)
 	exit;
 movement_and_collision();
 check_swing_sword();

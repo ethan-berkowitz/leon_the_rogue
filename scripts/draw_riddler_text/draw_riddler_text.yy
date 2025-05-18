@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "draw_npc_text",
+  "name": "draw_riddler_text",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

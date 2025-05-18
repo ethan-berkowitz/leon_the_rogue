@@ -5,7 +5,8 @@ if (target != noone)
     var dist = point_distance(x, y, target.x, target.y);
 if (dist < 84)
 {
-	draw_text(x - 3, y - 52, "E");
+	if (player_has_item("boss_key"))
+		draw_text(x - 3, y - 52, "E");
 	
 	if (keyboard_check_pressed(ord("E")) and player_has_item("boss_key"))
 	{

@@ -43,9 +43,9 @@ function movement_and_collision()
 	var new_x = x + move_x * spd;
 	var new_y = y + move_y * spd;
 
-	if (!place_meeting(new_x, y, oCollision) && !place_meeting(new_x, y, oDoor))
+	if (!place_meeting(new_x, y, oCollision) && !place_meeting(new_x, y, oDoor) && !place_meeting(new_x, y, oBossDoor))
 	    x = new_x;
 
-	if (!place_meeting(x, new_y, oCollision) && !place_meeting(x, new_y, oDoor))
+	if (!place_meeting(x, new_y, oCollision) && !place_meeting(x, new_y, oDoor) && !place_meeting(x, new_y, oBossDoor))
 	    y = new_y;
 }

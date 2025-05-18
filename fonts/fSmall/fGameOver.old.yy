@@ -1,7 +1,7 @@
 {
   "resourceType": "GMFont",
   "resourceVersion": "1.0",
-  "name": "fDefault",
+  "name": "fGameOver",
   "AntiAlias": 1,
   "applyKerning": 0,
   "ascender": 14,
